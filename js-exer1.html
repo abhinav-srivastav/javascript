@@ -1,45 +1,39 @@
 <html>
-	<head>
-		<script type="text/javascript">
-			function checkall()
-						{
-							
+<head>
+<script type="text/javascript">
 
-						var i=new Number(0);
-						for(i=0;i<document.form1.check.length;i++)
- 						document.form1.check[i].checked=true
-						}
+function checkall()
+{
+for(var i=0;i<document.form1.check.length;i++)
+document.form1.check[i].checked=true;
+}
 
-			function checknone()
-						{
- 						var i=new Number(0);
-						for(i=0;i<document.form1.check.length;i++)
- 						document.form1.check[i].checked=false
-						}
-		
-			
+function checknone()
+{
+for(var i=0;i<document.form1.check.length;i++)
+document.form1.check[i].checked=false;
+}
+</script>
+</head>
+<body>
+<form name ="form1">
 
-
-		</script>
-
-
-	</head>
-
-	<body>
-		<form name ="form1">
-			choices are:-<br/>
-			<input type = "checkbox"  name ="check" value="red" /> red <br/>
-			<input type = "checkbox"  name ="check" value="blue"/> blue <br/>
-			<input type = "checkbox"  name ="check" value="green"/> green <br/>
-			<input type = "checkbox"  name ="check" value="black" /> black <br/>
-			<input type = "checkbox"  name ="check" value="white"/> white <br/>			
-			
-			<input type="button" onclick="checkall()"  value="checkall">
-			<input type="button" onclick="checknone()" value="check none">
-
-		</form>
+list is:- <br/>
+<input type ="checkbox" name = "check" value="red">red<br/>
+<input type ="checkbox" name = "check" value="blue">blue<br/>
+<input type ="checkbox" name = "check" value="green">green<br/>
+<input type ="checkbox" name = "check" value="white">white<br/>
+<input type ="checkbox" name = "check" value="black">black<br/>
+<input type="button" onclick="checkall()" value = "check all">
+<input type="button" onclick="checknone()" value = "check none">
+</form>
 
 
-	</body>
+
+</body>
+
+
+
+
 
 </html>
