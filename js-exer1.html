@@ -2,16 +2,16 @@
   <head>
     <script type= "text/javascript">
       
-      function checkit()
+      function check_it(flag)
       {
-        if(document.form.check[0].checked== false)
+        if(flag == 1)
         {       
-          for(var i= 0;i< document.form.check.length;i++)
-          document.form.check[i].checked= true;
+          for(var i = 0 ; i < document.form.check.length ; i++)
+            document.form.check[i].checked = true;
         }     
         else
-          for(var i= 0;i< document.form.check.length;i++)
-          document.form.check[i].checked= false;
+          for(var i = 0 ; i < document.form.check.length ; i++)
+            document.form.check[i].checked = false;
        }
     </script>
   </head>
@@ -26,8 +26,8 @@
       <input type = "checkbox" name = "check" value= "white">white<br/>
       <input type = "checkbox" name = "check" value= "black">black<br/>
 
-      <input type= "button" onclick= "checkit()" value = "check all">
-      <input type= "button" onclick= "checkit()" value = "check none">
+      <input type= "button" onclick= "check_it(1)" value = "check all">
+      <input type= "button" onclick= "check_it(0)" value = "check none">
     </form>
   </body>
 </html>
