@@ -1,0 +1,36 @@
+<html>
+  <head>
+
+    <script type = "text/javascript">
+      function check_url()
+      {
+
+         var d_name = /http[s]:\/\/([a-z]*)\.(([a-z]*|[0-9]*)*)\.([a-z]*)\/((.)*){2,}/gi; 
+         var sub_d = /www/gi;
+         var url  = document.getElementById("url").value;
+        
+         d_name.test(url);
+
+         var temp = RegExp.$1+"."+RegExp.$2+"."+RegExp.$4;
+         if(sub_d.test(temp) == true)
+         {
+            alert("Domain is "+temp);
+         }
+         else
+         {
+            alert("Domain is "+RegExp.$2+"."+RegExp.$4+"   Subdomain is "+RegExp.$1);
+         }
+      }
+
+    </script>
+  </head>
+
+  <body>
+  
+      URL:-<input type = "text" id = "url" ><br/>
+
+      <input type = "button" onClick = "check_url()" value = "submit" >
+      
+  </body>
+
+</html>
