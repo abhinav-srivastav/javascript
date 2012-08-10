@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script type="text/javascript">
+
+    function getname()
+    { 
+       while(true)
+       {
+          var fname=prompt("please enter your first name","");
+          if(fname.trim()=="")
+            alert("empty string ,pls re-enter valid first name");
+          else 
+            break;
+       }
+
+       while(true)
+       {
+          var lname=prompt("please enter your last name","");
+          if(lname.trim()=="")
+            alert("empty  string ,pls re-enter valid last name");
+          else 
+            break;
+       }
+
+       alert("hello "+fname+" "+lname);
+   
+       document.getElementById("para").innerHTML=("hello "+fname+" "+lname);
+    }
+
+
+    </script>
+
+  </head>
+
+  <body onload=getname()>
+
+    <p id ="para" ></p>
+
+  </body>
+
+</html>
