@@ -1,57 +1,70 @@
 <html>
   <head>
-    <script type= "text/javascript">
-      var count= 0;
-      function selectday()
+    <script type = "text/javascript">
+
+      var count = 0;
+
+      function select_day()
       {
-        if(document.form.none.checked == true )
-          document.form.none.checked = false;
+        if(document.check_day.none.checked == true )
+          document.check_day.none.checked = false;
 
         count++;
-        if(count >3)
+
+        if(count > 3)
         {  
-          var txt= "";
-          var j= 0;
-          for(var i= 0;j< 3;i++)
-          if(document.form.day[i].checked== true)
-          {	
-            j++;
+           var txt = "";
+           var j = 0;
+           for(var i = 0 ; j < 3 ; i++)
+           if(document.check_day.day[i].checked == true)
+           {  
+              j++;
 
-            if(j == 3)
-            txt=txt+ "and ";
+              if(j == 3)
+              txt = txt + "and ";
 
-            txt=txt+ document.form.day[i].getAttribute('value');
-            txt=txt+ " ";
-          }
-        alert("Only 3 days can be selected. You have already selected "+txt);
-        selectnone();
-        }						
+              txt = txt + document.check_day.day[i].getAttribute('value');
+              txt = txt + " ";
+           }
+           alert("Only 3 days can be selected. You have already selected " + txt);
+           selectnone();
+        }  
+
       }
 
 
-      function selectnone()
+      function select_none()
       {
-        count= 0;
-        for(var i= 0;i< document.form.day.length;i++)
-        document.form.day[i].checked= false;
+         count = 0;
+         for(var i = 0 ; i < document.check_day.day.length ; i++)
+           document.check_day.day[i].checked = false;
       }
     </script>
   </head>
 
   <body>
-    <form name = "form">
+    <form name = "check_day">
 
       list is:- <br/>
 
-      <input type = "checkbox" name = "day" value= "Sunday" onclick= "selectday()">	Sunday		<br/>
-      <input type = "checkbox" name = "day" value= "Monday" onclick= "selectday()">	Monday		<br/>
-      <input type = "checkbox" name = "day" value= "Tuesday" onclick= "selectday()">	Tuesday		<br/>
-      <input type = "checkbox" name = "day" value= "Wednessday" onclick= "selectday()">	Wednessday	<br/>
-      <input type = "checkbox" name = "day" value= "Thusday" onclick= "selectday()">	Thusday		<br/>
-      <input type = "checkbox" name = "day" value= "Friday" onclick= "selectday()">	Friday		<br/>
-      <input type = "checkbox" name = "day" value= "Saturday" onclick= "selectday()">	Saturday	<br/>
-      <input type = "checkbox" name = "none" value= "none" onclick= "selectnone()">	none		<br/>
+      <input type = "checkbox" name = "day" value = "Sunday" onclick = "select_day()">     Sunday        <br/>
+
+      <input type = "checkbox" name = "day" value = "Monday" onclick = "select_day()">	   Monday	<br/>
+
+      <input type = "checkbox" name = "day" value = "Tuesday" onclick = "select_day()">	   Tuesday	<br/>
+
+      <input type = "checkbox" name = "day" value = "Wednessday" onclick = "select_day()"> Wednessday	<br/>
+
+      <input type = "checkbox" name = "day" value = "Thusday" onclick = "select_day()">	   Thusday	<br/>
+
+      <input type = "checkbox" name = "day" value = "Friday" onclick = "select_day()">	   Friday	<br/>
+
+      <input type = "checkbox" name = "day" value = "Saturday" onclick = "select_day()">   Saturday	<br/>
+
+      <input type = "checkbox" name = "none" value = "none" onclick = "select_none()">	   none		<br/>
 
     </form>
+
   </body>
+
 </html>
