@@ -1,39 +1,35 @@
 <html>
-	<head>
   <head>
+    <script type= "text/javascript">
+      
+      function check_it(flag)
+      {
+        if(flag == 1)
+        {       
+          for(var i = 0 ; i < document.form.check.length ; i++)
+            document.form.check[i].checked = true;
+        }     
+        else
+          for(var i = 0 ; i < document.form.check.length ; i++)
+            document.form.check[i].checked = false;
+       }
+    </script>
+  </head>
 
-		<script type="text/javascript">
+  <body>
+    <form name= "form">
 
-			function checkall()
-			{
-				for(var i=0;i<document.form1.check.length;i++)
-				document.form1.check[i].checked=true;
-			}
+    list is:- <br/>
+      <input type = "checkbox" name = "check" value= "red">red<br/>
+      <input type = "checkbox" name = "check" value= "blue">blue<br/>
+      <input type = "checkbox" name = "check" value= "green">green<br/>
+      <input type = "checkbox" name = "check" value= "white">white<br/>
+      <input type = "checkbox" name = "check" value= "black">black<br/>
 
-			function checknone()
-			{
-				for(var i=0;i<document.form1.check.length;i++)
-				document.form1.check[i].checked=false;
-			}
-		</script>
-	</head>
-
-	<body>
-		<form name ="form1">
-
-			list is:- <br/>
-			<input type ="checkbox" name = "check" value="red">red<br/>
-			<input type ="checkbox" name = "check" value="blue">blue<br/>
-			<input type ="checkbox" name = "check" value="green">green<br/>
-			<input type ="checkbox" name = "check" value="white">white<br/>
-			<input type ="checkbox" name = "check" value="black">black<br/>
-
-			<input type="button" onclick="checkall()" value = "check all">
-			<input type="button" onclick="checknone()" value = "check none">
-		</form>
-	</body>
-
+      <input type= "button" onclick= "check_it(1)" value = "check all">
+      <input type= "button" onclick= "check_it(0)" value = "check none">
+    </form>
+  </body>
 </html>
-=======
-</html>
->>>>>>> 5fec173cbb26a098356e013024b6f18df6c688a4
+
+
