@@ -109,7 +109,7 @@
         }
 
         var about = document.getElementById("about").value;
-        if(about.length <= 50)
+        if(about.trim() == "" || about.length <= 50)
         {    
            alert("About me cannot be less than 50 charectors.");
            return false;
