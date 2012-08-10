@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <style type = "text/css">
+
+    #normal_text
+    {
+      font-weight:normal;
+      font-size:14px;
+    }
+
+    span.normal_text
+    {
+      font-weight:normal;
+    }
+
+
+    #green
+    {
+      background:green;
+      color:white;
+    }
+
+    
+    div
+    {
+      font-weight:bold;
+      width:40%;
+      margin-left:28%;
+    }		
+
+    div div
+    {
+      text-align:center;
+      width:100%;
+      margin-left:0px;
+    }
+
+    div form 
+    {
+      padding-left:5px;
+      background:#ececec;
+    }
+
+    div form table
+    {
+      font-weight:bold;
+      padding:5px;
+      padding-right:10px;
+      width:100%;
+    }
+    div form input
+    {
+      border-color: green;
+    }
+    div form input.about_me
+    {
+      float:left;
+      width:98%;
+      height:150px;
+    }
+    
+    div form input.yellow
+    {
+      background:yellow;
+    }
+    </style>
+
+    <script type = "text/javascript">
+
+       function validate_form()
+      {
+        var at_occur = /@/g;
+        var dot_occur = new RegExp (".","g");
+
+        var email = document.getElementById("email").value;
+
+
+        if( at_occur.test(email) == false || email.match(at_occur).length != 1 )  
+        {     
+          alert("Email not valid !");
+          return false;
+        }
+        else
+{
+          dot_occur.test(email);
+        if(email.match(dot_occur).length < 2  )
+          {     
+            alert("Email not valid");
+            return false;
+          }
+        
+}
+       
+       
+        var home = document.getElementById("home").value;
+
+         dot_occur.test(home);
+         if(dot_occur.lastIndex < 0 || home.match(dot_occur).length  < 2)
+        {    
+           alert("Home page address not valid");
+           return false;
+        }
+
+
+
+    }  
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <div id = "green">
+        Registration Form
+      </div>
+
+      <form onsubmit="return validate_form()" method="post()">
+        <table>
+          <tr>
+	    <td>Login Id 
+	      <td><input type = "text" id ="login_id" name = "login_id" >
+          <tr>
+	    <td>Email
+	    <td ><input type = "text" id ="email" class ="yellow" name = 'email'>
+          <tr>
+            <td>Name
+            <td ><input type = "text" id ="name" class = "yellow" name = 'name'>
+          <tr>
+            <td>Time Zone
+            <td><select id = "time">
+                  <option value = "GMT">GMT </option>
+                  <option value = "GMT = -5:30">GMT = -5:30</option>
+                  <option value = "GMT = +5:30">GMT = +5:30</option>
+                </select>
+          <tr> 
+            <td>Home Page
+            <td><input type = "text" id = "home" name = 'homepage'><br/>
+        </table>
+
+        About me<br/>
+        <input type = "textarea" id = "about" class = "about_me" name = 'about_me'><br/><br/>
+
+        <input type = "checkbox" id = "notification" >
+        Recieve notification of comments.
+
+        <br/><br/>
+
+        <span id = "normal_text">
+        You will be sent an email when someone posts comments to your Blog or Album.
+        </span>
+
+        </br></br></br>
+
+        <div>
+          <span class = "normal_text">Your password will be mailed to you.</span>
+          </br>
+          <input type = "button" id = "green" value = "GO" onClick = "validate_form()" >
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </body>
+
+</html>
