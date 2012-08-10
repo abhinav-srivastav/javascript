@@ -1,0 +1,38 @@
+<html> 
+  <head>
+    <script type = "text/javascript">
+      
+      function check_numeric()
+      {
+         var e = document.getElementById("check_field").value; 
+         var alpha = /[a-z]/g;
+         var num = /[0-9]/g;
+          var spl_char = /[ +*-/^().\{}<>?:;!@#$%^& ]/;alert();
+         if(alpha.test(e) == true  || num.test(e) == false || spl_char.test(e) == true )
+         {
+            document.getElementById("check_result").value="false";
+         }
+         else
+         {
+            document.getElementById("check_result").value="true";
+         }
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <form>
+
+      Enter number :-<input type = "text" id = "check_field" ><br/>
+      Result :-<input type = "text" id = "check_result" ><br/>
+
+      <input type = "button" onClick = "check_numeric()" value = "submit" >
+
+    </form>
+
+  </body>
+
+</html>
