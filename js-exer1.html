@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script type = "text/javascript">
+    
+     function check_it(flag)
+     {
+        var check_color = document.forms[0].color;
+
+        for(var i = 0 ; i < check_color.length ; i++)
+          check_color[i].checked = flag;
+     }
+
+    </script>
+
+  </head>
+  <body >
+
+    <form>
+       list is:-<br/>
+        <input type = "checkbox" name = "color">red<br/>
+        <input type = "checkbox" name = "color">blue<br/>
+        <input type = "checkbox" name = "color">green<br/>
+        <input type = "checkbox" name = "color">white<br/>
+        <input type = "checkbox" name = "color">black<br/>
+
+        <input type="button" onClick="check_it(true)" value="check all">
+        <input type="button" onClick="check_it(false)" value="check none">
+     </form>
+
+  </body>
+
+</html>
