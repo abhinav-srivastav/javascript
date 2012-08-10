@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <style type = "text/css">
+
+    select
+    {
+       width:30%;
+       margin-top:0px;
+    }
+
+    input
+    {
+       color:white;
+       background:orange;
+       size:20px;
+    }
+
+    input.add_button
+    {
+       position:fixed;
+       top:29px;
+       left:400px;
+    }
+
+    </style>
+
+    <script type = "text/javascript">
+
+    function swap_item(flag)
+    {
+       var swap_value = document.createElement("option");
+
+       if(flag == 1)
+       {
+          swap_value.text = document.getElementById("left_list").value;
+          document.getElementById("right_list").add(swap_value,null);
+ 
+          document.getElementById("left_list").remove(document.getElementById("left_list").selectedIndex);
+       }
+       else
+       {
+          swap_value.text = document.getElementById("right_list").value;
+          document.getElementById("left_list").add(swap_value,null);
+ 
+          document.getElementById("right_list").remove(document.getElementById("right_list").selectedIndex);
+       }
+    }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <select id = "left_list" multiple = "m" size = "5" >
+      <option value = "Denmark">Denmark</option>
+      <option value = "Japan">Japan</option>
+      <option value = "India">India</option>
+      <option value = "USA">USA</option>
+      <option value = "UK">UK</option>
+      <option value = "SA">SA</option>
+    </select>
+
+    <input class = "add_button" type = "button" onClick = "swap_item(1)" value = "      ADD     >>">
+    <input type = "button" onClick = "swap_item(0)" value = "<<  REMOVE">
+
+    <select id = "right_list" multiple = "m" size = "5">
+    </select>
+
+  </body>
+
+</html>
