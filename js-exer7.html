@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script type = "text/javascript">
+    
+    function open_url()
+    {
+       var url = "Http://"
+       url = url + prompt("Enter the url","")  
+       if(url.trim() == "Http://")
+         alert("empty url")
+       else
+         window.open(url,"_blank",'height=450px,width=400px,location=0,resizable=0,scrollbars=0,menubar=0,status=0,titlebar=0,toolbar=0');
+    }
+
+    </script>
+
+  </head>
+  <body onload = "open_url()">
+
+  </body> 
+
+</html>
