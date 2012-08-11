@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script type = "text/javascript">
+      var row_no = 1;
+
+      function add_row()
+      {
+         var tbody = document.getElementById("tbody");
+         var trow = document.createElement("tr");
+         trow.insertCell(0);
+         trow.cells[0].innerHTML = '<input type = textbox  name = "user" id = user size = 30%>';
+ 
+         trow.insertCell(1);
+         trow.cells[1].innerHTML = '<input type = textbox name = "email" id = email size = 30%>';
+
+         trow.insertCell(2);
+         trow.cells[2].innerHTML = '<input type = button name = "action"  value = "save" size=10% onclick = "append_row()">';
+
+         tbody.appendChild(trow);
+         document.getElementById("table_add").appendChild(tbody);
+      }
+
+      function append_row()
+      {
+
+       var user_value = document.getElementById("user").value;
+       var email_value = document.getElementById("email").value;
+
+       var tbody = document.getElementById("tbody");
+      
+       var trow = document.createElement("tr");
+
+       trow.id=row_no++;
+       tbody.appendChild(trow);
+
+       document.getElementById("tbody").deleteRow(trow.rowIndex-1);
+
+       trow.insertCell(0);
+       trow.cells[0].innerHTML = user_value;
+
+       trow.insertCell(1);
+       trow.cells[1].innerHTML = email_value;
+
+       trow.insertCell(2);
+       trow.cells[2].innerHTML = '<a href = "#" onClick = app(' + trow.id + ') >edit</a>/<a href = "#" onClick = del(' + trow.id + ')>DEL</a>';	
+
+       tbody.appendChild(trow);
+       document.getElementById("table_add").appendChild(tbody);
+      }
+
+      function del(row_id)
+      {
+        var row_del = document.getElementById(row_id).rowIndex;
+        var tbody = document.getElementById("tbody");  
+        tbody.deleteRow(row_del);
+        document.getElementById("table_add").appendChild(tbody);
+      } 
+
+      function app(row_id)
+     {
+        var tbody = document.getElementById("tbody");
+        var trow = document.getElementById(row_id);
+        
+        trow.cells[0].innerHTML = '<input type= textbox  name= "user" id =user size=30%>';
+         
+        trow.cells[1].innerHTML = '<input type= textbox name= "email" id =email size=30%>';
+         
+        trow.cells[2].innerHTML = '<input type= button name= "action"  value="save"size=10% onclick="append_row()">';
+
+        tbody.appendChild(trow);
+        document.getElementById("table_add").appendChild(tbody);
+     }
+
+    </script>
+  </head>
+
+  <body>
+    <table id = "table_add" border=1px cellspacing=0px width=70%>
+      <tbody id = "tbody">      
+        <tr>
+          <td>User</td>
+          <td>Email</td>
+          <td>Action</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" onClick="add_row()">Add New Row</button>
+
+  </body>
+</html>
