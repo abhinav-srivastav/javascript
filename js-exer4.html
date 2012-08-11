@@ -1,0 +1,71 @@
+<html>
+  <head>
+     <style type = "text/css">
+     
+      ul
+      {
+        list-style-type:none;
+      }
+
+      div ul li ul
+      {
+
+      display:none;
+      }
+
+    </style>
+ 
+    <script type = "text/javascript">
+   
+    function get_child(parent_id,child_id)
+    {
+    
+      if(document.getElementById(parent_id).checked == true)
+         document.getElementById(child_id).style.display="inline";
+      else
+         document.getElementById(child_id).style.display="none";
+    }
+
+
+
+    </script>
+  </head>
+
+  <body>
+
+    <div id = 'parent_check' height = 100px>
+    <ul>
+      <li>
+          <input type = "checkbox" id = "color" value = "color" onClick = "get_child('color' , 'color_child')"> color <br/>
+          <ul id = "color_child">
+             <li>  <input type = "checkbox"  value = "red">   red   <br/>
+             <li>  <input type = "checkbox"  value = "blue">  blue  <br/>
+             <li>  <input type = "checkbox"  value = "green"> green <br/>
+             <li>  <input type = "checkbox"  value = "white"> white <br/>
+          </ul>
+
+
+      <li>  <input type = "checkbox" id = "movie" value = "movie" onClick = "get_child('movie','movie_child')"> movie <br/>
+        <ul id = "movie_child">
+          <li>  <input type = "checkbox"  value = "Dar"> Dar <br/>
+          <li>  <input type = "checkbox"  value = "Sir"> Sir <br/>
+        </ul>
+
+      <li> <input type = "checkbox" id = "drink" value = "drinks" onClick="get_child('drink','drink_child')"> drink <br/>
+        <ul id = drink_child>
+          <li>  <input type = "checkbox"  value = "Coke">  Coke  <br/>
+          <li>  <input type = "checkbox"  value = "Pepsi"> Pepsi <br/>
+          <li>  <input type = "checkbox"  value = "Dew">   Dew   <br/>
+        </ul>
+
+      <li><input type = "checkbox" id = "bikes" value = "bikes" onClick = "get_child('bikes','bikes_child')"> bikes <br/>
+        <ul id = bikes_child>
+          <li>  <input type = "checkbox"  value = "V-rod">  V-rod <br/>
+          <li>  <input type = "checkbox"  value = "Pulsar"> blue  <br/>
+          <li>  <input type = "checkbox"  value = "cbz">    cbz   <br/>
+        </ul>
+    </ul>
+    </div>
+
+  </body>
+</html>
