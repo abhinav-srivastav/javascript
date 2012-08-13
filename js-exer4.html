@@ -2,6 +2,12 @@
   <head>
      <style type = "text/css">
      
+      div 
+      {
+        height:100px;
+        overflow:scroll;
+      }
+
       ul
       {
         list-style-type:none;
@@ -9,8 +15,7 @@
 
       div ul li ul
       {
-
-      display:none;
+        display:none;
       }
 
     </style>
@@ -19,7 +24,9 @@
    
     function get_child(parent_id,child_id)
     {
-    
+
+
+      document.getElementById("parent_check").scrollTo = document.getElementById(parent_id).scrollHeight;
       if(document.getElementById(parent_id).checked == true)
          document.getElementById(child_id).style.display="inline";
       else
@@ -32,11 +39,9 @@
   </head>
 
   <body>
-
-    <div id = 'parent_check' height = 100px>
+    <div id = 'parent_check'>
     <ul>
-      <li>
-          <input type = "checkbox" id = "color" value = "color" onClick = "get_child('color' , 'color_child')"> color <br/>
+      <li>  <input type = "checkbox" id = "color" value = "color" onClick = "get_child('color' , 'color_child')"> color <br/>
           <ul id = "color_child">
              <li>  <input type = "checkbox"  value = "red">   red   <br/>
              <li>  <input type = "checkbox"  value = "blue">  blue  <br/>
@@ -61,7 +66,7 @@
       <li><input type = "checkbox" id = "bikes" value = "bikes" onClick = "get_child('bikes','bikes_child')"> bikes <br/>
         <ul id = bikes_child>
           <li>  <input type = "checkbox"  value = "V-rod">  V-rod <br/>
-          <li>  <input type = "checkbox"  value = "Pulsar"> blue  <br/>
+          <li>  <input type = "checkbox"  value = "Pulsar"> Pulsar  <br/>
           <li>  <input type = "checkbox"  value = "cbz">    cbz   <br/>
         </ul>
     </ul>
