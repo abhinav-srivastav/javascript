@@ -6,7 +6,7 @@
       {
          var e = document.getElementById("check_field").value; 
           
-         if(isNaN(Number(e)))
+         if(e.trim().length == 0 || isNaN(Number(e)))
          {
             document.getElementById("check_result").value="false";
          }
