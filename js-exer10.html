@@ -5,10 +5,8 @@
       function check_numeric()
       {
          var e = document.getElementById("check_field").value; 
-         var alpha = /[a-z]/gi;
-         var num = /[0-9]/g;
-          var spl_char = /[ +*-/^().\{}<>?:;!@#$%^& ]/;alert();
-         if(alpha.test(e) == true  || num.test(e) == false || spl_char.test(e) == true )
+          
+         if(isNaN(Number(e)))
          {
             document.getElementById("check_result").value="false";
          }
