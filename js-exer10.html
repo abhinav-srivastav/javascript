@@ -13,6 +13,7 @@
          else
          {
             document.getElementById("check_result").value="true";
+            document.form_check_numeric.submit();
          }
       }
 
@@ -22,7 +23,7 @@
 
   <body>
 
-    <form>
+    <form name = form_check_numeric action = form_submit.html>
 
       Enter number :-<input type = "text" id = "check_field" ><br/>
       Result :-<input type = "text" id = "check_result" ><br/>
