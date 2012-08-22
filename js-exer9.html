@@ -25,7 +25,7 @@
     {
       font-weight:bold;
       width:40%;
-      margin-left:28%;
+      margin:auto;
     }		
 
     div div
@@ -52,11 +52,10 @@
     {
       border-color: green;
     }
-    div form input.about_me
+     #about_me
     {
-      float:left;
-      width:98%;
-      height:150px;
+      width:95%;      
+      border-color: green;
     }
     
     div form input.yellow
@@ -69,40 +68,27 @@
 
        function validate_form()
       {
-        var at_occur = /@/g;
-        var dot_occur = new RegExp (".","g");
+        var mail = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/gi;
 
         var email = document.getElementById("email").value;
 
-
-        if( at_occur.test(email) == false || email.match(at_occur).length != 1 )  
+        if( email.trim() == "" || mail.test(email) == false )  
         {     
+
           alert("Email not valid !");
           return false;
         }
-        else
-{
-          dot_occur.test(email);
-        if(email.match(dot_occur).length < 2  )
-          {     
-            alert("Email not valid");
-            return false;
-          }
-        
-}
        
+        var url = /^(http[s]?:\/\/){0,1}[a-z0-9.-]+\.[a-z0-9\.\-]+\.[a-z]{2,3}$/gi;
        
         var home = document.getElementById("home").value;
 
-         dot_occur.test(home);
-         if(dot_occur.lastIndex < 0 || home.match(dot_occur).length  < 2)
+        if(home.trim() == "" ||url.test(home) == false )
         {    
-           alert("Home page address not valid");
-           return false;
+          alert("Home page address not valid");
+          return false;
         }
-
-
-
+        
     }  
     </script>
   </head>
@@ -113,7 +99,7 @@
         Registration Form
       </div>
 
-      <form onsubmit="return validate_form()" method="post()">
+      <form name = form_validate onsubmit="return validate_form();" action = form_submit.html>
         <table>
           <tr>
 	    <td>Login Id 
@@ -137,7 +123,7 @@
         </table>
 
         About me<br/>
-        <input type = "textarea" id = "about" class = "about_me" name = 'about_me'><br/><br/>
+        <textarea id = "about" class = "about_me" rows= 7 cols=60 name = 'about_me'></textarea><br/><br/>
 
         <input type = "checkbox" id = "notification" >
         Recieve notification of comments.
@@ -153,7 +139,7 @@
         <div>
           <span class = "normal_text">Your password will be mailed to you.</span>
           </br>
-          <input type = "button" id = "green" value = "GO" onClick = "validate_form()" >
+          <input type = "submit" id = "green" value = "GO" onClick = "validate_form()" >
 
         </div>
 
