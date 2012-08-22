@@ -9,11 +9,12 @@
          if(e.trim().length == 0 || isNaN(Number(e)))
          {
             document.getElementById("check_result").value="false";
+             return false;
          }
          else
          {
             document.getElementById("check_result").value="true";
-            document.form_check_numeric.submit();
+            return true;
          }
       }
 
@@ -23,12 +24,12 @@
 
   <body>
 
-    <form name = form_check_numeric action = form_submit.html>
+    <form name = form_check_numeric onsubmit = "return check_numeric();" action = form_submit.html>
 
       Enter number :-<input type = "text" id = "check_field" ><br/>
       Result :-<input type = "text" id = "check_result" ><br/>
 
-      <input type = "button" onClick = "check_numeric()" value = "submit" >
+      <input type = "submit"  value = "submit" >
 
     </form>
 
