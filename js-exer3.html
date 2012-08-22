@@ -1,48 +1,81 @@
 <html>
   <head>
     <script type = "text/javascript">
-      var row_no = 1;
+      var row_no = 0;
 
       function add_row()
       {
          var tbody = document.getElementById("tbody");
          var trow = document.createElement("tr");
+         tbody.appendChild(trow);
          trow.insertCell(0);
-         trow.cells[0].innerHTML = '<input type = textbox  name = "user" id = user size = 30%>';
- 
+
+         var tdata1 = document.createElement("td");
+         var cell_value = document.createElement("input");
+         cell_value.setAttribute("type","textbox");
+         cell_value.setAttribute("id","user"+trow.rowIndex);
+         cell_value.setAttribute("size","30%");
+
+         tdata1.appendChild(cell_value);
+         trow.cells[0].appendChild(tdata1);
+
          trow.insertCell(1);
-         trow.cells[1].innerHTML = '<input type = textbox name = "email" id = email size = 30%>';
+         var tdata2 = document.createElement("td");
+         var cell_value2 = document.createElement("input");
+         cell_value2.setAttribute("type","textbox");
+         cell_value2.setAttribute("id","email"+trow.rowIndex);
+         cell_value2.setAttribute("size","30%");
+
+         tdata2.appendChild(cell_value2);
+         trow.cells[1].appendChild(tdata2);
 
          trow.insertCell(2);
-         trow.cells[2].innerHTML = '<input type = button name = "action"  value = "save" size=10% onclick = "append_row()">';
+         var tdata3 = document.createElement("td");
+         var cell_value3 = document.createElement("input");
+         cell_value3.setAttribute("type","button");
+         cell_value3.setAttribute("value","save");
+         cell_value3.setAttribute("onclick","append_row("+trow.rowIndex+")");
+         cell_value3.setAttribute("size","10%");
 
+         tdata3.appendChild(cell_value3);
+         trow.cells[2].appendChild(tdata3);
          tbody.appendChild(trow);
-         document.getElementById("table_add").appendChild(tbody);
+         document.getElementById("table_add").appendChild(tbody); row_no++;
       }
 
-      function append_row()
+      function append_row(row_ind)
       {
-
-       var user_value = document.getElementById("user").value;
-       var email_value = document.getElementById("email").value;
-
-       var tbody = document.getElementById("tbody");
+       var row_app = document.getElementById("email"+row_ind).parentNode.parentNode.parentNode.rowIndex;
+       var user_value = document.getElementById("user"+row_ind).value;
+       var email_value = document.getElementById("email"+row_ind).value;
+       var tbody = document.getElementById("tbody");  
       
        var trow = document.createElement("tr");
 
-       trow.id=row_no++;
+       trow.id=row_app;
+      
        tbody.appendChild(trow);
 
-       document.getElementById("tbody").deleteRow(trow.rowIndex-1);
+       document.getElementById("tbody").deleteRow(row_app);
 
        trow.insertCell(0);
-       trow.cells[0].innerHTML = user_value;
+       trow.cells[0].appendChild(document.createTextNode(user_value));
 
        trow.insertCell(1);
-       trow.cells[1].innerHTML = email_value;
+       trow.cells[1].appendChild(document.createTextNode(email_value));
 
        trow.insertCell(2);
-       trow.cells[2].innerHTML = '<a href = "#" onClick = app(' + trow.id + ') >edit</a>/<a href = "#" onClick = del(' + trow.id + ')>DEL</a>';	
+       var cell_value = document.createElement("a");  
+       cell_value.setAttribute("href","#");
+       cell_value.setAttribute("onclick","app("+trow.id+")");
+       cell_value.appendChild(document.createTextNode("edit/"));
+    
+       var cell_value1 = document.createElement("a");  
+       cell_value1.setAttribute("href","#");
+       cell_value1.setAttribute("onclick","del("+trow.id+")");
+       cell_value1.appendChild(document.createTextNode("del"));
+       trow.cells[2].appendChild(cell_value);
+       trow.cells[2].appendChild(cell_value1);
 
        tbody.appendChild(trow);
        document.getElementById("table_add").appendChild(tbody);
@@ -61,12 +94,35 @@
         var tbody = document.getElementById("tbody");
         var trow = document.getElementById(row_id);
         
-        trow.cells[0].innerHTML = '<input type= textbox  name= "user" id =user size=30%>';
-         
-        trow.cells[1].innerHTML = '<input type= textbox name= "email" id =email size=30%>';
-         
-        trow.cells[2].innerHTML = '<input type= button name= "action"  value="save"size=10% onclick="append_row()">';
+        var tdata1 = document.createElement("td");
+        var cell_value = document.createElement("input");
+        cell_value.setAttribute("type","textbox");
+        cell_value.setAttribute("id","user"+trow.rowIndex);
+        cell_value.setAttribute("size","30%");
 
+        tdata1.appendChild(cell_value);
+        trow.cells[0].replaceChild(tdata1,trow.cells[0].firstChild);
+
+        
+        var tdata2 = document.createElement("td");
+        var cell_value2 = document.createElement("input");
+        cell_value2.setAttribute("type","textbox");
+        cell_value2.setAttribute("id","email"+trow.rowIndex);
+        cell_value2.setAttribute("size","30%");
+        tdata2.appendChild(cell_value2);
+        trow.cells[1].replaceChild(tdata2,trow.cells[1].firstChild);
+
+
+        var tdata3 = document.createElement("td");
+        var cell_value3 = document.createElement("input");
+        cell_value3.setAttribute("type","button");
+        cell_value3.setAttribute("value","save");
+        cell_value3.setAttribute("onclick","append_row("+trow.rowIndex+")");
+        cell_value3.setAttribute("size","10%");
+
+        tdata3.appendChild(cell_value3);
+        trow.cells[2].removeChild(trow.cells[2].lastChild);
+        trow.cells[2].replaceChild(tdata3,trow.cells[2].firstChild);
         tbody.appendChild(trow);
         document.getElementById("table_add").appendChild(tbody);
      }
