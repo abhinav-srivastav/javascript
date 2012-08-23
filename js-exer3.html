@@ -12,7 +12,7 @@
 
          var tdata1 = document.createElement("td");
          var cell_value = document.createElement("input");
-         cell_value.setAttribute("type","textbox");
+         cell_value.setAttribute("type","text");
          cell_value.setAttribute("id","user"+trow.rowIndex);
          cell_value.setAttribute("size","30%");
 
@@ -22,7 +22,7 @@
          trow.insertCell(1);
          var tdata2 = document.createElement("td");
          var cell_value2 = document.createElement("input");
-         cell_value2.setAttribute("type","textbox");
+         cell_value2.setAttribute("type","text");
          cell_value2.setAttribute("id","email"+trow.rowIndex);
          cell_value2.setAttribute("size","30%");
 
@@ -87,24 +87,19 @@
       function app(row_id)
      {
         var tbody = document.getElementById("tbody");
-        
         var prev_row = document.getElementById(row_id);
-    
-
         var current_row = prev_row.rowIndex;
 
-console.log(current_row);
-tbody.deleteRow(prev_row.rowIndex);
+        tbody.deleteRow(prev_row.rowIndex);
         tbody.insertRow(current_row);
 
         var user_value = prev_row.cells[0].childNodes[0].textContent;
-
         var email_value = prev_row.cells[1].childNodes[0].textContent;
 
         tbody.rows[current_row].insertCell(0);
         var tdata1 = document.createElement("td");
         var cell_value = document.createElement("input");
-        cell_value.setAttribute("type","textbox");
+        cell_value.setAttribute("type","text");
         cell_value.setAttribute("id","user"+prev_row.rowIndex);
         cell_value.setAttribute("size","30%");
         cell_value.setAttribute("value",user_value);
@@ -115,7 +110,7 @@ tbody.deleteRow(prev_row.rowIndex);
         tbody.rows[current_row].insertCell(1);
         var tdata2 = document.createElement("td");
         var cell_value2 = document.createElement("input");
-        cell_value2.setAttribute("type","textbox");
+        cell_value2.setAttribute("type","text");
         cell_value2.setAttribute("id","email"+prev_row.rowIndex);
         cell_value2.setAttribute("size","30%");
         cell_value2.setAttribute("value",email_value);
@@ -135,7 +130,7 @@ tbody.deleteRow(prev_row.rowIndex);
 
 
 
-        //document.getElementById("table_add").appendChild(tbody);
+        document.getElementById("table_add").appendChild(tbody);
      }
 
     </script>
