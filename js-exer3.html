@@ -40,8 +40,7 @@
          tdata3.appendChild(cell_value3);
          trow.cells[2].appendChild(tdata3);
          tbody.appendChild(trow);
-         document.getElementById("table_add").appendChild(tbody); 
-         row_no++;
+         document.getElementById("table_add").appendChild(tbody); row_no++;
       }
 
       function append_row(row_ind)
@@ -93,8 +92,8 @@
       function app(row_id)
      {
         var tbody = document.getElementById("tbody");
-        var trow = document.getElementById(row_id);
-        
+        var trow = document.createElement("tr");
+        trow.insertCell(0);
         var tdata1 = document.createElement("td");
         var cell_value = document.createElement("input");
         cell_value.setAttribute("type","textbox");
@@ -102,18 +101,18 @@
         cell_value.setAttribute("size","30%");
 
         tdata1.appendChild(cell_value);
-        trow.cells[0].replaceChild(tdata1,trow.cells[0].firstChild);
+        trow.cells[0].appendChild(tdata1);
 
-        
+        trow.insertCell(1);
         var tdata2 = document.createElement("td");
         var cell_value2 = document.createElement("input");
         cell_value2.setAttribute("type","textbox");
         cell_value2.setAttribute("id","email"+trow.rowIndex);
         cell_value2.setAttribute("size","30%");
         tdata2.appendChild(cell_value2);
-        trow.cells[1].replaceChild(tdata2,trow.cells[1].firstChild);
+        trow.cells[1].appendChild(tdata2);
 
-
+        trow.insertCell(2);
         var tdata3 = document.createElement("td");
         var cell_value3 = document.createElement("input");
         cell_value3.setAttribute("type","button");
@@ -122,9 +121,9 @@
         cell_value3.setAttribute("size","10%");
 
         tdata3.appendChild(cell_value3);
-        trow.cells[2].removeChild(trow.cells[2].lastChild);
-        trow.cells[2].replaceChild(tdata3,trow.cells[2].firstChild);
-        tbody.appendChild(trow);
+        trow.cells[2].appendChild(tdata3);
+
+        tbody.replaceChild(trow,document.getElementById(row_id));
         document.getElementById("table_add").appendChild(tbody);
      }
 
