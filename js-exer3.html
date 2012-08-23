@@ -93,12 +93,20 @@
      {
         var tbody = document.getElementById("tbody");
         var trow = document.createElement("tr");
+
+        var prev_row = document.getElementById(row_id);
+
+        var user_value = prev_row.cells[0].childNodes[0].textContent;
+
+        var email_value = prev_row.cells[1].childNodes[0].textContent;
+
         trow.insertCell(0);
         var tdata1 = document.createElement("td");
         var cell_value = document.createElement("input");
         cell_value.setAttribute("type","textbox");
         cell_value.setAttribute("id","user"+trow.rowIndex);
         cell_value.setAttribute("size","30%");
+        cell_value.setAttribute("value",user_value);
 
         tdata1.appendChild(cell_value);
         trow.cells[0].appendChild(tdata1);
@@ -109,6 +117,7 @@
         cell_value2.setAttribute("type","textbox");
         cell_value2.setAttribute("id","email"+trow.rowIndex);
         cell_value2.setAttribute("size","30%");
+        cell_value2.setAttribute("value",email_value);
         tdata2.appendChild(cell_value2);
         trow.cells[1].appendChild(tdata2);
 
