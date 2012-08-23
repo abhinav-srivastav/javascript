@@ -1,58 +1,81 @@
 <html>
   <head>
     <script type = "text/javascript">
-      var row_no = 0;
+      var row_no = 1;
+
+      function create_input(id_value,node_value)
+      {
+         var tdata = document.createElement("td");
+         var cell_value = document.createElement("input");
+         cell_value.setAttribute("type","text");
+         cell_value.setAttribute("id",id_value);
+         cell_value.setAttribute("size","30%");
+         cell_value.setAttribute("value",node_value);
+
+         tdata.appendChild(cell_value);
+         return tdata;
+      }
+
+      function create_button(onclick_val)
+      { 
+
+         var tdata = document.createElement("td");
+         var cell_value = document.createElement("input");
+         cell_value.setAttribute("type","button");
+         cell_value.setAttribute("value","save");
+         cell_value.setAttribute("onclick",onclick_val);
+         cell_value.setAttribute("size","10%");
+
+         tdata.appendChild(cell_value);
+         return tdata;
+       }
+
+       function create_link(link_val,func_name)
+      { 
+
+       var cell_value = document.createElement("a");  
+       cell_value.setAttribute("href","#");
+       cell_value.setAttribute("onclick",func_name);
+       cell_value.appendChild(document.createTextNode(link_val));
+
+       return cell_value;
+      }
 
       function add_row()
       {
          var tbody = document.getElementById("tbody");
          var trow = document.createElement("tr");
          tbody.appendChild(trow);
+   
+         trow.id = "row"+row_no;
+
          trow.insertCell(0);
-
-         var tdata1 = document.createElement("td");
-         var cell_value = document.createElement("input");
-         cell_value.setAttribute("type","text");
-         cell_value.setAttribute("id","user"+trow.rowIndex);
-         cell_value.setAttribute("size","30%");
-
-         tdata1.appendChild(cell_value);
-         trow.cells[0].appendChild(tdata1);
+         trow.cells[0].appendChild(create_input("user"+row_no,""));
 
          trow.insertCell(1);
-         var tdata2 = document.createElement("td");
-         var cell_value2 = document.createElement("input");
-         cell_value2.setAttribute("type","text");
-         cell_value2.setAttribute("id","email"+trow.rowIndex);
-         cell_value2.setAttribute("size","30%");
-
-         tdata2.appendChild(cell_value2);
-         trow.cells[1].appendChild(tdata2);
+         trow.cells[1].appendChild(create_input("email"+row_no,""));
 
          trow.insertCell(2);
-         var tdata3 = document.createElement("td");
-         var cell_value3 = document.createElement("input");
-         cell_value3.setAttribute("type","button");
-         cell_value3.setAttribute("value","save");
-         cell_value3.setAttribute("onclick","append_row("+trow.rowIndex+")");
-         cell_value3.setAttribute("size","10%");
+         trow.cells[2].appendChild(create_button("append_row("+row_no+")"));
 
-         tdata3.appendChild(cell_value3);
-         trow.cells[2].appendChild(tdata3);
          tbody.appendChild(trow);
-         document.getElementById("table_add").appendChild(tbody); row_no++;
+         document.getElementById("table_add").appendChild(tbody);
+         row_no++;
       }
 
       function append_row(row_ind)
       {
-       var row_app = document.getElementById("email"+row_ind).parentNode.parentNode.parentNode.rowIndex;
+       var tbody = document.getElementById("tbody");  
+    
+       var row_app = document.getElementById("row"+row_ind).rowIndex;
        var user_value = document.getElementById("user"+row_ind).value;
        var email_value = document.getElementById("email"+row_ind).value;
-       var tbody = document.getElementById("tbody");  
       
        document.getElementById("tbody").deleteRow(row_app);
        tbody.insertRow(row_app);
-       tbody.rows[row_app].id= row_app;
+
+       tbody.rows[row_app].id= row_ind;
+
        tbody.rows[row_app].insertCell(0);
        tbody.rows[row_app].cells[0].appendChild(document.createTextNode(user_value));
 
@@ -60,17 +83,8 @@
        tbody.rows[row_app].cells[1].appendChild(document.createTextNode(email_value));
 
        tbody.rows[row_app].insertCell(2);
-       var cell_value = document.createElement("a");  
-       cell_value.setAttribute("href","#");
-       cell_value.setAttribute("onclick","app("+tbody.rows[row_app].id+")");
-       cell_value.appendChild(document.createTextNode("edit/"));
-    
-       var cell_value1 = document.createElement("a");  
-       cell_value1.setAttribute("href","#");
-       cell_value1.setAttribute("onclick","del("+tbody.rows[row_app].id+")");
-       cell_value1.appendChild(document.createTextNode("del"));
-       tbody.rows[row_app].cells[2].appendChild(cell_value);
-       tbody.rows[row_app].cells[2].appendChild(cell_value1);
+       tbody.rows[row_app].cells[2].appendChild(create_link("edit/","app("+tbody.rows[row_app].id+")" ));
+       tbody.rows[row_app].cells[2].appendChild(create_link("del","del("+tbody.rows[row_app].id+")" ));
 
 
        document.getElementById("table_add").appendChild(tbody);
@@ -86,6 +100,7 @@
 
       function app(row_id)
      {
+
         var tbody = document.getElementById("tbody");
         var prev_row = document.getElementById(row_id);
         var current_row = prev_row.rowIndex;
@@ -96,39 +111,16 @@
         var user_value = prev_row.cells[0].childNodes[0].textContent;
         var email_value = prev_row.cells[1].childNodes[0].textContent;
 
-        tbody.rows[current_row].insertCell(0);
-        var tdata1 = document.createElement("td");
-        var cell_value = document.createElement("input");
-        cell_value.setAttribute("type","text");
-        cell_value.setAttribute("id","user"+prev_row.rowIndex);
-        cell_value.setAttribute("size","30%");
-        cell_value.setAttribute("value",user_value);
+        tbody.rows[current_row].id = "row"+row_id; 
 
-        tdata1.appendChild(cell_value);
-        tbody.rows[current_row].cells[0].appendChild(tdata1);
+        tbody.rows[current_row].insertCell(0);
+        tbody.rows[current_row].cells[0].appendChild(create_input("user"+row_id,user_value));
 
         tbody.rows[current_row].insertCell(1);
-        var tdata2 = document.createElement("td");
-        var cell_value2 = document.createElement("input");
-        cell_value2.setAttribute("type","text");
-        cell_value2.setAttribute("id","email"+prev_row.rowIndex);
-        cell_value2.setAttribute("size","30%");
-        cell_value2.setAttribute("value",email_value);
-        tdata2.appendChild(cell_value2);
-        tbody.rows[current_row].cells[1].appendChild(tdata2);
+        tbody.rows[current_row].cells[1].appendChild(create_input("email"+row_id,email_value));
 
         tbody.rows[current_row].insertCell(2);
-        var tdata3 = document.createElement("td");
-        var cell_value3 = document.createElement("input");
-        cell_value3.setAttribute("type","button");
-        cell_value3.setAttribute("value","save");
-        cell_value3.setAttribute("onclick","append_row("+prev_row.rowIndex+")");
-        cell_value3.setAttribute("size","10%");
-
-        tdata3.appendChild(cell_value3);
-        tbody.rows[current_row].cells[2].appendChild(tdata3);
-
-
+        tbody.rows[current_row].cells[2].appendChild(create_button("append_row("+row_id+")"));
 
         document.getElementById("table_add").appendChild(tbody);
      }
