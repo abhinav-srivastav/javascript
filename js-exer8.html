@@ -24,22 +24,16 @@
 
     <script type = "text/javascript">
     
-    function swap_country(flag)
+    function swap_country(from_id,to_id)
     {
        var swap_item = document.createElement("option");
 
-       if(flag == 1)
-       {
-          swap_item.text = document.getElementById("left_row").value;
-          document.getElementById("right_row").add(swap_item,null);
-          document.getElementById("left_row").remove(document.getElementById("left_row").selectedIndex);
-       }
-       else
-       {
-          swap_item.text = document.getElementById("right_row").value;
-          document.getElementById("left_row").add(swap_item,null);
-          document.getElementById("right_row").remove(document.getElementById("right_row").selectedIndex);
-       }    
+       swap_item.text = document.getElementById(from_id).value;
+
+       document.getElementById(to_id).add(swap_item,null);
+
+       document.getElementById(from_id).remove(document.getElementById(from_id).selectedIndex);
+          
     }
 
     </script>
@@ -57,8 +51,8 @@
       <option value = "Japan">Japan</option>
     </select>
 
-    <input class = "add_country" type = "button" name = "add" value = "   ADD     >>" onClick = "swap_country(1)">
-    <input type = "button" name = "remove" value = "<<  REMOVE" onClick = "swap_country(0)">
+    <input class = "add_country" type = "button" id = "table_left" value = "   ADD     >>" onClick = "swap_country('left_row','right_row')">
+    <input type = "button" id = "table_right" value = "<<  REMOVE" onClick = "swap_country('right_row','left_row')">
 
     <select id = "right_row" maximum = "m" size = "5">
 

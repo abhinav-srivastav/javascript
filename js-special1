@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style type = "text/css">
+
+    div
+    {
+      display:none;
+    }
+
+    div#start
+    {
+      display:inline;
+    }
+
+    </style>
+
+    <script type = "text/javascript">
+
+    var myVar;
+    var timer = 0;
+    var exp_val;
+    var ques_no = 0;
+    var score = 0;
+    var last_page = new Array();
+    var wrong_ans = 1;
+    
+    function timedQuiz()
+    {
+
+       if(ques_no == 0)
+       { 
+         document.getElementById("start").style.display = "none";
+         document.getElementById("test_page").style.display = "inline";
+       }
+      
+       if(ques_no == 5)
+        {  
+          final_page();
+        }
+       else
+       {
+         ques_no++;
+         timer = 10;
+
+         document.getElementById("sol").disabled = false;
+         document.getElementById("sol").value = "";
+         document.getElementById("clock").innerHTML = timer;
+ 
+         myVar = setInterval( function(){ myTimer() } , 1000);
+
+         var operand1 = Math.floor((Math.random()*20)+1);
+         var operand2 = Math.floor((Math.random()*20)+1);
+ 
+         exp_val = operand1+rand_oper()+operand2;
+ 
+         document.getElementById("evaluate").innerHTML= exp_val;
+       }
+     }
+
+    function rand_oper()
+    {
+      var val = Math.floor((Math.random()*4)+1);
+
+      switch(val)
+      {
+        case 1:return '+';
+        break;
+        case 2:return '-';
+        break;
+        case 3:return '*';
+        break;
+        default:return '/';
+      }
+    }
+
+    function myTimer()
+    {
+      timer -= 1;
+      document.getElementById("clock").innerHTML=timer;
+
+      if(timer == 0)
+      eval_reset();
+
+    }
+
+    function eval_reset()
+    {
+         document.getElementById("sol").disabled = true;
+         clearInterval(myVar);
+
+         var corr_ans = parseInt(eval(exp_val));
+         var sol = document.getElementById("sol").value;
+       
+         if(sol.trim() == "")
+           status = "empty";
+         else
+           if(parseInt(sol) == corr_ans)
+             status = "right";
+           else
+             status = "wrong";
+
+         if(status == "right")
+           score += 1;
+         else
+         {
+            if(status = "empty")
+            sol = "empty value";
+
+            last_page[wrong_ans++]="\nfor question " + ques_no + " your answer was \" "+sol+" \" and the correct answer was "+corr_ans;
+         }
+
+        timedQuiz();
+    }
+
+    function final_page()
+    {
+      last_page[0] = "\n Your score is "+score;  
+      document.getElementById("final").style.display = "inline";
+      document.getElementById("final").innerText = last_page;  
+
+    }  
+    </script>
+
+  </head>
+
+
+
+  <body>
+    <div id = "start">
+      <input type =  "button" id = start value = "start the test " onclick= "timedQuiz()">
+    </div>
+
+    <div id = test_page>
+
+      <p id="clock"></p>
+
+      <p  id = "evaluate"></p>
+ 
+      Answer:-<input type = "text" id = "sol"><br/ >
+      <input type =  "button" value = "submit" onClick = "eval_reset()"/>
+
+      <br/><br/>
+
+    <div id = "final">
+    </div>
+
+  </body>
+</html>
+
+

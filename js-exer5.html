@@ -1,3 +1,5 @@
+<!doctype html>
+
 <html>
   <head>
     <style type = "text/css">
@@ -24,15 +26,14 @@
     div
     {
       font-weight:bold;
-      width:40%;
-      margin-left:28%;
+      width:500px;
+      margin:auto;
     }		
 
     div div
     {
       text-align:center;
       width:100%;
-      margin-left:0px;
     }
 
     div form 
@@ -48,15 +49,16 @@
       padding-right:10px;
       width:100%;
     }
+
     div form input
     {
       border-color: green;
     }
-    div form input.about_me
+
+     #about
     {
-      float:left;
-      width:98%;
-      height:150px;
+      width:95%;
+      border-color: green;
     }
     
     div form input.yellow
@@ -65,54 +67,54 @@
     }
     </style>
 
+
     <script type = "text/javascript">
 
       function validate_form()
       {
-        var l_id = document.getElementById("login_id").value;
-        if(l_id.trim() == "")
-        {    
-         alert("Login id cannot be empty");
-         return false;
-        }
+        var submit = true;
+    
        
+        var loop_element = document.forms[0].check_element;
+
+        for(var i = 0 ; i < loop_element.length ; i++ )
+        if(loop_element[i].value.trim() == "")
+        {    
+         alert(loop_element[i].id + " cannot be empty");
+         submit = false;
+        }
+
         var email = document.getElementById("email").value;
         var at_position = email.indexOf("@");
         var dot_position = email.lastIndexOf(".");
-        if (email.trim() == "" || at_position < 1 || dot_position < (at_position + 2) || (dot_position + 2) >= email.length )
+        if (at_position < 1 || dot_position < (at_position + 2) || (dot_position + 2) >= email.length )
         {    
           alert("Email not valid");
-          return false;
+          submit = false;
         }
  
-       var name = document.getElementById("name").value;
-        if(name.trim() == "")
-        {    
-          alert("Name cannot be empty");
-          return false;
-        }
-       
+
         var time = document.getElementById("time").value;
         if(time == "GMT")
         {    
            alert("Select a time zone");
-           return false;
+           submit = false;
         }
        
         var home = document.getElementById("home").value;
         var first_dot = home.indexOf(".");
         dot_position = home.lastIndexOf(".");
-        if(home.trim() == "" || (first_dot + 2) > dot_position)
+        if((first_dot + 2) > dot_position)
         {    
            alert("Home page address not valid");
-           return false;
+           submit = false;
         }
 
         var about = document.getElementById("about").value;
-        if(about.trim() == "" || about.length <= 50)
+        if(about.length <= 50)
         {    
            alert("About me cannot be less than 50 charectors.");
-           return false;
+           submit = false;
         }
 
         var noti = document.getElementById("notification").checked;
@@ -120,9 +122,11 @@
         {
            noti = confirm("Receive Notification")
            if(noti == false)
-             return false;
+             submit = false;
         }
-      
+
+        if(submit == true)              
+        document.form_validate.submit();
      }
 
     </script>
@@ -134,17 +138,17 @@
         Registration Form
       </div>
 
-      <form onsubmit="return validate_form()" method="post()">
+      <form  name = form_validate action=form_submit.html >
         <table>
           <tr>
 	    <td>Login Id 
-	      <td><input type = "text" id ="login_id" name = "login_id" >
+	      <td><input type = "text" id ="login_id" name = "check_element" >
           <tr>
 	    <td>Email
-	    <td ><input type = "text" id ="email" class ="yellow" name = 'email'>
+	    <td ><input type = "text" id ="email" class="yellow" name = 'check_element'>
           <tr>
             <td>Name
-            <td ><input type = "text" id ="name" class = "yellow" name = 'name'>
+            <td ><input type = "text" id ="name" class = "yellow" name = 'check_element'>
           <tr>
             <td>Time Zone
             <td><select id = "time">
@@ -154,11 +158,11 @@
                 </select>
           <tr> 
             <td>Home Page
-            <td><input type = "text" id = "home" name = 'homepage'><br/>
+            <td><input type = "text" id = "home" name = 'check_element'><br/>
         </table>
 
         About me<br/>
-        <input type = "textarea" id = "about" class = "about_me" name = 'about_me'><br/><br/>
+        <textarea rows= 7 cols=70  id = "about" name = 'check_element'  ></textarea><br/><br/>
 
         <input type = "checkbox" id = "notification" >
         Recieve notification of comments.
