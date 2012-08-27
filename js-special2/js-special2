@@ -41,34 +41,13 @@
 
   function sort_images(value)
   {
+     if(value == 'name')
+       prod.sort(function (x,y) { return x[value] - y[value] });
+     else
+       prod.sort( function (x,y) { return (x[value] > y[value]) ? 1 : 0 });
 
-   if(value == 'name')
-    {
-
-     for(j = prod.length - 1 ; j > 0  ; j--)
-      for(i = 0 ; i < j ; i++)
-       if(parseInt(prod[i][value]) > parseInt(prod[i+1][value]))
-       {
-         temp = prod[i];
-         prod[i] = prod[i+1];
-         prod[i+1] = temp;
-       }
-    }
-
-   else
-    {
-     for(j = prod.length - 1 ; j > 0  ; j--)
-      for(i = 0 ; i < j ; i++)
-       if(prod[i][value] > prod[i+1][value])
-       {
-         temp = prod[i];
-         prod[i] = prod[i+1];
-         prod[i+1] = temp;
-       }
-    }
-
-      delete_prev_images();
-      init(prod);
+     delete_prev_images();
+     init(prod);
   }
 
   function delete_prev_images()
